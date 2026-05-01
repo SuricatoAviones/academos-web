@@ -1,0 +1,63 @@
+---
+import academosWhite from "../../../assets/logos/academos-white.png";
+---
+
+<section id="contacto" class="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+  <!-- Lado izquierdo: info de contacto -->
+  <div class="bg-gray-100 flex flex-col justify-center px-10 sm:px-16 py-16">
+    <h2 class="text-5xl lg:text-6xl font-black mb-10" style="color: #1a237e;">
+      Contacto
+    </h2>
+
+    <div class="flex flex-col gap-7">
+      <!-- Dirección -->
+      <div>
+        <p
+          class="text-sm font-black tracking-widest uppercase mb-1"
+          style="color: #1a237e;"
+        >
+          Dirección
+        </p>
+        <p class="text-base leading-relaxed" style="color: #1a237e;">
+          Carrera 5A con calle Santo Domingo. Sector mercado viejo. Monagas -
+          Maturín.
+        </p>
+      </div>
+
+      <!-- Correo -->
+      <div>
+        <p
+          class="text-sm font-black tracking-widest uppercase mb-1"
+          style="color: #1a237e;"
+        >
+          Correo Electrónico
+        </p>
+        <p class="text-base" style="color: #1a237e;">academos.mat@gmail.com</p>
+      </div>
+
+      <!-- Teléfono -->
+      <div>
+        <p
+          class="text-sm font-black tracking-widest uppercase mb-1"
+          style="color: #1a237e;"
+        >
+          Teléfono
+        </p>
+        <p class="text-base" style="color: #1a237e;">0426 4318934</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lado derecho: fondo azul con logo -->
+  <div
+    class="relative overflow-hidden flex items-center justify-center"
+    style="background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
+  >
+    <img
+      src={academosWhite.src}
+      alt=""
+      aria-hidden="true"
+      class="absolute w-[480px] lg:w-[580px] opacity-[0.1] pointer-events-none select-none"
+    />
+  </div>
+</section>

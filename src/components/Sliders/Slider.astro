@@ -1,0 +1,110 @@
+---
+import CursoCard from "../cards/CursoCard.astro";
+
+interface Curso {
+  bgColor: string;
+  titulo: string;
+  texto: string;
+  icono: string;
+}
+
+interface Props {
+  cursos: Curso[];
+  id?: string;
+}
+
+const { cursos, id = "slider" } = Astro.props;
+---
+
+<div class="relative w-full" id={id}>
+  <!-- Contenedor con overflow hidden -->
+  <div class="overflow-hidden">
+    <div
+      class="flex transition-transform duration-500 ease-in-out gap-6"
+      id={`${id}-track`}
+    >
+      {
+        cursos.map((curso) => (
+          <div class="flex-none w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+            <CursoCard
+              bgColor={curso.bgColor}
+              titulo={curso.titulo}
+              texto={curso.texto}
+              icono={curso.icono}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Flecha izquierda -->
+  <button
+    id={`${id}-prev`}
+    aria-label="Anterior"
+    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-10 h-10 rounded-full flex items-center justify-center shadow-md text-white font-bold text-lg transition-opacity"
+    style="background-color: #1a237e;"
+  >
+    &#8249;
+  </button>
+
+  <!-- Flecha derecha -->
+  <button
+    id={`${id}-next`}
+    aria-label="Siguiente"
+    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-10 h-10 rounded-full flex items-center justify-center shadow-md text-white font-bold text-lg transition-opacity"
+    style="background-color: #1a237e;"
+  >
+    &#8250;
+  </button>
+</div>
+
+<script define:vars={{ id, total: cursos.length }}>
+  let current = 0;
+
+  const track = document.getElementById(`${id}-track`);
+  const prevBtn = document.getElementById(`${id}-prev`);
+  const nextBtn = document.getElementById(`${id}-next`);
+
+  function getVisible() {
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 640) return 2;
+    return 1;
+  }
+
+  function getCardWidth() {
+    const card = track.querySelector("div");
+    if (!card) return 0;
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 24;
+    return card.offsetWidth + gap;
+  }
+
+  function update() {
+    const visible = getVisible();
+    const maxIndex = Math.max(0, total - visible);
+    if (current > maxIndex) current = maxIndex;
+    const cardWidth = getCardWidth();
+    track.style.transform = `translateX(-${current * cardWidth}px)`;
+    prevBtn.style.opacity = current === 0 ? "0.4" : "1";
+    nextBtn.style.opacity = current >= maxIndex ? "0.4" : "1";
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (current > 0) {
+      current--;
+      update();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const maxIndex = Math.max(0, total - getVisible());
+    if (current < maxIndex) {
+      current++;
+      update();
+    }
+  });
+
+  window.addEventListener("resize", update);
+  update();
+</script>

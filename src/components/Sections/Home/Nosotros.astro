@@ -1,0 +1,55 @@
+---
+import people from "../../../assets/img/people.jpg";
+---
+
+<section class="py-16 px-8 sm:px-16 lg:px-28 bg-white">
+  <!-- Título -->
+  <h2 class="text-4xl lg:text-5xl font-black mb-10" style="color: #1a237e;">
+    Sobre nosotros
+  </h2>
+
+  <!-- Grid: imagen + contenido -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- Imagen -->
+    <div class="rounded-2xl overflow-hidden shadow-md">
+      <img
+        src={people.src}
+        alt="Equipo Academos"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Misión y Visión -->
+    <div class="flex flex-col gap-8">
+      <!-- Misión -->
+      <div>
+        <span
+          class="inline-block font-bold text-base px-8 py-2 rounded-full mb-4"
+          style="background-color: #f5c518; color: #1a237e;"
+        >
+          Misión
+        </span>
+        <p class="text-lg leading-relaxed" style="color: #1a237e;">
+          Nuestra misión es impulsar y fomentar el desarrollo de profesionales
+          altamente capacitados en tecnología de la información, que generen
+          soluciones innovadoras y competitivas en un entorno global
+        </p>
+      </div>
+
+      <!-- Visión -->
+      <div>
+        <span
+          class="inline-block font-bold text-base px-8 py-2 rounded-full mb-4"
+          style="background-color: #f5c518; color: #1a237e;"
+        >
+          Visión
+        </span>
+        <p class="text-lg leading-relaxed" style="color: #1a237e;">
+          Ser la institución educativa líder en la transformación digital de
+          nuestro país, formando profesionales éticos y competentes que
+          contribuyan al desarrollo económico y social.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+---
+import Slider from "../../Sliders/Slider.astro";
+import { cursosJovenes } from "../../../const";
+---
+
+<section
+  id="cursos-jovenes"
+  class="py-16 px-8 sm:px-16 lg:px-28"
+  style="background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
+>
+  <h2 class="text-4xl lg:text-5xl font-black text-white text-center mb-12">
+    Cursos para jóvenes
+  </h2>
+  <Slider cursos={cursosJovenes} id="cursos-jovenes" />
+</section>

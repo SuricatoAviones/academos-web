@@ -1,0 +1,39 @@
+---
+import academosWhite from "../../../assets/logos/academos-white.png";
+---
+
+<section
+  class="relative overflow-hidden flex items-center min-h-[600px] lg:min-h-[680px] px-8 py-20 sm:px-16 lg:px-28"
+  style="background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
+>
+  <!-- Logo de fondo -->
+  <div
+    class="absolute right-[-3rem] top-1/2 -translate-y-1/2 w-[480px] lg:w-[640px] opacity-[0.08] pointer-events-none select-none"
+  >
+    <img
+      src={academosWhite.src}
+      alt=""
+      aria-hidden="true"
+      class="w-full h-auto"
+    />
+  </div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 max-w-xl">
+    <h1 class="text-7xl lg:text-8xl font-black text-white leading-none mb-4">
+      Academos
+    </h1>
+    <p class="text-xl lg:text-2xl text-white font-normal leading-relaxed mb-10">
+      Academia de Tecnología de la<br />Información
+    </p>
+    <a
+      href="#contacto"
+      class="inline-block font-extrabold text-sm tracking-widest px-12 py-4 rounded-full no-underline transition-colors duration-200"
+      style="background-color: #f5c518; color: #1a1a1a;"
+      onmouseover="this.style.backgroundColor='#e0b000'"
+      onmouseout="this.style.backgroundColor='#f5c518'"
+    >
+      ÚNETE
+    </a>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+---
+import academosLogo from "../../assets/logos/academos.png";
+---
+
+<header
+  class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 sm:px-16 lg:px-28 overflow-visible"
+  style="height: 80px; background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
+>
+  <!-- Gran círculo blanco anclado a la esquina superior izquierda -->
+  <!-- Solo se ve el cuadrante inferior-derecho dentro del header -->
+  <div
+    class="absolute"
+    style="
+      width: 420px;
+      height: 210px;
+      background: white;
+      border-radius: 50%;
+      top: -40px;
+      left: -80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 40px;
+      padding-top: 30px;
+    "
+  >
+    <img
+      src={academosLogo.src}
+      alt="Academos"
+      style="width: 100px; height: 100px; object-fit: contain;"
+    />
+  </div>
+
+  <!-- Espacio para el logo -->
+  <div style="width: 160px;"></div>
+
+  <!-- Navegación -->
+  <nav class="flex items-center gap-8">
+    <!-- Cursos con submenu -->
+    <div class="relative group">
+      <button
+        class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors flex items-center gap-1"
+      >
+        Cursos
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-3 h-3 mt-0.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <!-- Dropdown -->
+      <div
+        class="absolute left-0 top-full mt-2 min-w-[200px] rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+        style="background-color: rgba(50, 70, 180, 0.85); backdrop-filter: blur(4px);"
+      >
+        <a
+          href="#cursos-adultos"
+          class="block px-5 py-3 text-sm font-bold text-white hover:text-yellow-400 transition-colors"
+        >
+          Cursos para adultos
+        </a>
+        <a
+          href="#cursos-jovenes"
+          class="block px-5 py-3 text-sm font-bold text-white hover:text-yellow-400 transition-colors"
+        >
+          Cursos para jóvenes
+        </a>
+      </div>
+    </div>
+    <a
+      href="#diplomados"
+      class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
+      >Diplomados</a
+    >
+    <!-- <a
+      href="#servicios"
+      class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
+      >Servicios</a
+    > -->
+    <a
+      href="#nosotros"
+      class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
+      >Sobre Nosotros</a
+    >
+    <a
+      href="#contacto"
+      class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
+      >Contacto</a
+    >
+    <!-- Ícono casa -->
+    <a href="/" aria-label="Inicio">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="#f5c518"
+        viewBox="0 0 24 24"
+      >
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+      </svg>
+    </a>
+  </nav>
+</header>

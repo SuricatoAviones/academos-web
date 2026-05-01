@@ -1,0 +1,39 @@
+---
+import academosWhite2 from "../../assets/logos/academos-white-2.png";
+---
+
+<footer class="bg-[#1e2d6e] text-white py-12 px-4">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      <!-- Columna Izquierda - Enlaces legales -->
+      <div class="space-y-4 text-center md:text-left">
+        <a
+          href="/terminos-y-condiciones"
+          class="block text-white hover:text-yellow-400 transition-colors text-lg"
+        >
+          Términos y condiciones
+        </a>
+        <a
+          href="/politica-de-datos"
+          class="block text-white hover:text-yellow-400 transition-colors text-lg"
+        >
+          Política de datos
+        </a>
+      </div>
+
+      <!-- Columna Central - Logo -->
+      <div class="flex justify-center">
+        <img src={academosWhite2.src} alt="Academos Logo" class="h-32 w-auto" />
+      </div>
+
+      <!-- Columna Derecha - Información -->
+      <div class="space-y-3 text-center md:text-right">
+        <p class="text-lg font-medium">
+          Academia de Tecnología de la Información
+        </p>
+        <p class="text-base">Todos los derechos reservados</p>
+        <p class="text-base">Rif: J-506068133</p>
+      </div>
+    </div>
+  </div>
+</footer>
