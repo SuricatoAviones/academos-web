@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import academosLogo from "../../assets/logos/academos.png";
 ---
 
@@ -24,9 +25,12 @@ import academosLogo from "../../assets/logos/academos.png";
       padding-top: 30px;
     "
   >
-    <img
-      src={academosLogo.src}
+    <Image
+      src={academosLogo}
       alt="Academos"
+      format="webp"
+      loading="eager"
+      fetchpriority="high"
       style="width: 100px; height: 100px; object-fit: contain;"
     />
   </div>
@@ -39,6 +43,10 @@ import academosLogo from "../../assets/logos/academos.png";
     <!-- Cursos con submenu -->
     <div class="relative group">
       <button
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        aria-label="Mostrar submenu de cursos"
         class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors flex items-center gap-1"
       >
         Cursos
@@ -58,17 +66,23 @@ import academosLogo from "../../assets/logos/academos.png";
       </button>
       <!-- Dropdown -->
       <div
+        role="menu"
+        aria-label="Submenu cursos"
         class="absolute left-0 top-full mt-2 min-w-[200px] rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
         style="background-color: rgba(50, 70, 180, 0.85); backdrop-filter: blur(4px);"
       >
         <a
           href="#cursos-adultos"
+          role="menuitem"
+          aria-label="Ir a cursos para adultos"
           class="block px-5 py-3 text-sm font-bold text-white hover:text-yellow-400 transition-colors"
         >
           Cursos para adultos
         </a>
         <a
           href="#cursos-jovenes"
+          role="menuitem"
+          aria-label="Ir a cursos para jóvenes"
           class="block px-5 py-3 text-sm font-bold text-white hover:text-yellow-400 transition-colors"
         >
           Cursos para jóvenes
@@ -77,6 +91,7 @@ import academosLogo from "../../assets/logos/academos.png";
     </div>
     <a
       href="#diplomados"
+      aria-label="Ir a diplomados"
       class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
       >Diplomados</a
     >
@@ -87,11 +102,13 @@ import academosLogo from "../../assets/logos/academos.png";
     > -->
     <a
       href="#nosotros"
+      aria-label="Ir a sobre nosotros"
       class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
       >Sobre Nosotros</a
     >
     <a
       href="#contacto"
+      aria-label="Ir a contacto"
       class="text-sm font-semibold text-white hover:text-yellow-400 transition-colors"
       >Contacto</a
     >
@@ -100,11 +117,14 @@ import academosLogo from "../../assets/logos/academos.png";
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-6 h-6"
+        aria-hidden="true"
         fill="#f5c518"
         viewBox="0 0 24 24"
       >
+        <title>Inicio</title>
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
       </svg>
+      <span class="sr-only">Inicio</span>
     </a>
   </nav>
 </header>

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import academosWhite from "../../../assets/logos/academos-white.png";
 ---
 
@@ -53,10 +54,11 @@ import academosWhite from "../../../assets/logos/academos-white.png";
     class="relative overflow-hidden flex items-center justify-center"
     style="background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
   >
-    <img
-      src={academosWhite.src}
+    <Image
+      src={academosWhite}
       alt=""
       aria-hidden="true"
+      format="webp"
       class="absolute w-[480px] lg:w-[580px] opacity-[0.1] pointer-events-none select-none"
     />
   </div>

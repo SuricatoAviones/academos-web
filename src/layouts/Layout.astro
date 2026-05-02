@@ -2,26 +2,74 @@
 import Header from "@/components/ui/Header.astro";
 import Footer from "@/components/ui/Footer.astro";
 import "@/styles/global.css";
+
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
+  ogImage?: string;
 }
 
 const {
-  title = "Academos",
+  title = "Academos | Academia de Tecnologia de la Informacion",
   description = "Academia de Tecnología de la Información",
+  noindex = false,
+  ogImage = "/academos-white.png",
 } = Astro.props;
+
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : undefined;
+const ogImageURL = Astro.site ? new URL(ogImage, Astro.site).toString() : ogImage;
+const robots = noindex ? "noindex, nofollow" : "index, follow";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Academos",
+  description,
+  url: canonicalURL,
+  email: "academos.mat@gmail.com",
+  telephone: "+584264318934",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Carrera 5A con calle Santo Domingo, sector mercado viejo",
+    addressLocality: "Maturin",
+    addressRegion: "Monagas",
+    addressCountry: "VE",
+  },
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/academos-white.png" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={robots} />
+    <meta name="author" content="Academos" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:site_name" content="Academos" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content="Academos" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}>
+    </script>
   </head>
   <body>
     <Header />

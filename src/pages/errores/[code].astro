@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ErrorPage from "../../components/ui/ErrorPage.astro";
+import { errorPages, type ErrorInfo } from "../../const";
+
+export function getStaticPaths() {
+  return errorPages.map((error: ErrorInfo) => ({
+    params: { code: String(error.code) },
+    props: { error },
+  }));
+}
+
+interface Props {
+  error: ErrorInfo;
+}
+
+const { error } = Astro.props;
+---
+
+<Layout
+  title={`${error.code} | Academos`}
+  description={error.title}
+  noindex={true}
+>
+  <ErrorPage code={error.code} title={error.title} message={error.message} />
+</Layout>

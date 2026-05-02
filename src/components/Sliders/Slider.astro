@@ -1,11 +1,12 @@
 ---
 import CursoCard from "../cards/CursoCard.astro";
+import type { ImageMetadata } from "astro";
 
 interface Curso {
   bgColor: string;
   titulo: string;
   texto: string;
-  icono: string;
+  icono: ImageMetadata;
 }
 
 interface Props {
@@ -16,16 +17,16 @@ interface Props {
 const { cursos, id = "slider" } = Astro.props;
 ---
 
-<div class="relative w-full" id={id}>
+<div class="relative w-full px-4 sm:px-8 lg:px-14" id={id}>
   <!-- Contenedor con overflow hidden -->
   <div class="overflow-hidden">
     <div
-      class="flex transition-transform duration-500 ease-in-out gap-6"
+      class="flex items-stretch transition-transform duration-500 ease-in-out gap-6"
       id={`${id}-track`}
     >
       {
         cursos.map((curso) => (
-          <div class="flex-none w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+          <div class="flex flex-none w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
             <CursoCard
               bgColor={curso.bgColor}
               titulo={curso.titulo}
@@ -42,8 +43,7 @@ const { cursos, id = "slider" } = Astro.props;
   <button
     id={`${id}-prev`}
     aria-label="Anterior"
-    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-10 h-10 rounded-full flex items-center justify-center shadow-md text-white font-bold text-lg transition-opacity"
-    style="background-color: #1a237e;"
+    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 sm:-translate-x-7 lg:-translate-x-9 text-white text-7xl leading-none font-light transition-opacity transition-colors hover:text-yellow-300"
   >
     &#8249;
   </button>
@@ -52,8 +52,7 @@ const { cursos, id = "slider" } = Astro.props;
   <button
     id={`${id}-next`}
     aria-label="Siguiente"
-    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-10 h-10 rounded-full flex items-center justify-center shadow-md text-white font-bold text-lg transition-opacity"
-    style="background-color: #1a237e;"
+    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 sm:translate-x-7 lg:translate-x-9 text-white text-7xl leading-none font-light transition-opacity transition-colors hover:text-yellow-300"
   >
     &#8250;
   </button>
@@ -82,12 +81,24 @@ const { cursos, id = "slider" } = Astro.props;
 
   function update() {
     const visible = getVisible();
+    if (total <= visible) {
+      current = 0;
+      track.style.transform = "translateX(0px)";
+      prevBtn.style.opacity = "0";
+      nextBtn.style.opacity = "0";
+      prevBtn.style.pointerEvents = "none";
+      nextBtn.style.pointerEvents = "none";
+      return;
+    }
+
     const maxIndex = Math.max(0, total - visible);
     if (current > maxIndex) current = maxIndex;
     const cardWidth = getCardWidth();
     track.style.transform = `translateX(-${current * cardWidth}px)`;
     prevBtn.style.opacity = current === 0 ? "0.4" : "1";
     nextBtn.style.opacity = current >= maxIndex ? "0.4" : "1";
+    prevBtn.style.pointerEvents = current === 0 ? "none" : "auto";
+    nextBtn.style.pointerEvents = current >= maxIndex ? "none" : "auto";
   }
 
   prevBtn.addEventListener("click", () => {

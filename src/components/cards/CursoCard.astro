@@ -1,36 +1,42 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
   bgColor: string;
   titulo: string;
   texto: string;
-  icono: string;
+  icono: ImageMetadata;
 }
 
 const { bgColor, titulo, texto, icono } = Astro.props;
 ---
 
 <div
-  class="rounded-2xl overflow-hidden shadow-lg w-full flex flex-col border border-gray-200"
+  class="rounded-2xl overflow-hidden shadow-lg w-full h-full min-h-[370px] lg:min-h-[395px] flex flex-col border border-gray-200"
 >
   <!-- Área de ícono con color de fondo -->
   <div
-    class="flex items-center justify-center py-8 px-6"
+    class="h-36 lg:h-40 flex items-center justify-center px-6"
     style={`background-color: ${bgColor};`}
   >
-    <img src={icono} alt={titulo} class="w-20 h-20 object-contain" />
+    <Image
+      src={icono}
+      alt={titulo}
+      format="webp"
+      class="w-20 h-20 object-contain"
+    />
   </div>
 
   <!-- Área de contenido blanca -->
-  <div
-    class="bg-white flex flex-col items-center text-center px-4 py-5 gap-2 flex-1"
-  >
+  <div class="bg-white flex flex-col items-center text-center px-5 py-5 flex-1">
     <h3
-      class="text-sm font-black uppercase tracking-wide"
+      class="text-base font-black uppercase tracking-wide"
       style="color: #1a237e;"
     >
       {titulo}
     </h3>
-    <p class="text-sm leading-snug" style="color: #1a237e;">{texto}</p>
-    <span class="mt-2 text-gray-400 text-lg">&#8964;</span>
+    <p class="mt-2 text-base leading-snug" style="color: #1a237e;">{texto}</p>
+    <span class="mt-auto pt-3 text-gray-400 text-lg">&#8964;</span>
   </div>
 </div>

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import academosWhite2 from "../../assets/logos/academos-white-2.png";
 ---
 
@@ -23,7 +24,12 @@ import academosWhite2 from "../../assets/logos/academos-white-2.png";
 
       <!-- Columna Central - Logo -->
       <div class="flex justify-center">
-        <img src={academosWhite2.src} alt="Academos Logo" class="h-32 w-auto" />
+        <Image
+          src={academosWhite2}
+          alt="Academos Logo"
+          format="webp"
+          class="h-32 w-auto"
+        />
       </div>
 
       <!-- Columna Derecha - Información -->

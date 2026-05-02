@@ -1,0 +1,16 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ErrorPage from "@/components/ui/ErrorPage.astro";
+---
+
+<Layout
+  title="404 | Academos"
+  description="Pagina no encontrada"
+  noindex={true}
+>
+  <ErrorPage
+    code={404}
+    title="Pagina no encontrada"
+    message="La pagina que intentas visitar no existe o fue movida."
+  />
+</Layout>
