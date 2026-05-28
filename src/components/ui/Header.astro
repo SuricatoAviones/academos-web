@@ -271,4 +271,61 @@ import academosLogo from "../../assets/logos/academos-white.png";
       }
     });
   }
+
+  const sectionLinks = document.querySelectorAll('header a[href^="#"]');
+  const headerOffset = 88;
+
+  const smoothScrollToHash = (hash, updateHash = true) => {
+    if (!hash || hash === "#") {
+      return false;
+    }
+
+    const target = document.querySelector(hash);
+
+    if (!target) {
+      return false;
+    }
+
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: "smooth",
+    });
+
+    if (updateHash) {
+      history.replaceState(null, "", hash);
+    }
+
+    return true;
+  };
+
+  sectionLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const hash = link.getAttribute("href");
+
+      if (!hash || hash === "#") {
+        return;
+      }
+
+      const didScroll = smoothScrollToHash(hash);
+
+      if (didScroll) {
+        event.preventDefault();
+        return;
+      }
+
+      if (window.location.pathname !== "/") {
+        event.preventDefault();
+        window.location.href = `/${hash}`;
+      }
+    });
+  });
+
+  window.addEventListener("load", () => {
+    if (window.location.hash) {
+      smoothScrollToHash(window.location.hash, false);
+    }
+  });
 </script>
