@@ -1,0 +1,24 @@
+# Apache/Plesk config for an Astro static site.
+
+Options -MultiViews
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve existing files and directories directly.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Redirect /path -> /path/ when /path/index.html exists.
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.+[^/])$ /$1/ [R=301,L]
+
+  # Allow extensionless access to real .html files.
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ /$1.html [L]
+</IfModule>
+
+# Use Astro custom 404 page instead of Plesk default error page.
+ErrorDocument 404 /404.html

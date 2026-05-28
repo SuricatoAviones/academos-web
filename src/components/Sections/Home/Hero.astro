@@ -4,12 +4,12 @@ import academosWhite from "../../../assets/logos/academos-white.png";
 ---
 
 <section
-  class="relative overflow-hidden flex items-center min-h-[460px] sm:min-h-[600px] lg:min-h-[680px] px-6 py-14 sm:px-16 sm:py-20 lg:px-28"
+  class="relative overflow-hidden flex items-center justify-center lg:justify-start min-h-[460px] sm:min-h-[600px] lg:min-h-[680px] px-6 py-14 sm:px-16 sm:py-20 lg:px-28"
   style="background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
 >
   <!-- Logo de fondo -->
   <div
-    class="absolute right-[-5rem] top-[56%] -translate-y-1/2 w-[320px] sm:right-[-3rem] sm:top-1/2 sm:w-[480px] lg:w-[640px] opacity-[0.09] sm:opacity-[0.08] pointer-events-none select-none"
+    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[480px] lg:left-auto lg:right-[-3rem] lg:translate-x-0 lg:w-[640px] opacity-[0.09] sm:opacity-[0.08] pointer-events-none select-none"
   >
     <Image
       src={academosWhite}
@@ -23,7 +23,9 @@ import academosWhite from "../../../assets/logos/academos-white.png";
   </div>
 
   <!-- Contenido -->
-  <div class="relative z-10 max-w-[19rem] sm:max-w-xl text-center sm:text-left">
+  <div
+    class="relative z-10 max-w-[19rem] sm:max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
+  >
     <h1
       class="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.95] mb-3 sm:mb-4"
     >
