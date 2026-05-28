@@ -1,46 +1,49 @@
-# Astro Starter Kit: Basics
+# Academos Web
+Sitio web institucional de **Academos**, academia de tecnología orientada a formación para adultos, jóvenes y diplomados.
 
-```sh
-npm create astro@latest -- --template basics
-```
+## Descripción
+Este proyecto implementa la landing principal del portal con secciones de:
+- Hero principal
+- Sobre nosotros (misión y visión)
+- Cursos para adultos
+- Cursos para jóvenes
+- Diplomados
+- Contacto
+- Bloque de redes sociales
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Además, incluye páginas de error dinámicas por código HTTP en la ruta `errores/[code]`.
 
-## 🚀 Project Structure
+## Stack
+- [Astro](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-Inside of your Astro project, you'll see the following folders and files:
-
+## Estructura principal
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── public/                      # Recursos públicos (imágenes estáticas globales)
+├── src/
+│   ├── assets/                  # Imágenes de cursos y logos
+│   ├── components/
+│   │   ├── Sections/Home/       # Secciones de la página principal
+│   │   ├── Sliders/             # Slider reutilizable para cursos
+│   │   ├── cards/               # Tarjeta de curso
+│   │   └── ui/                  # Header, Footer y ErrorPage
+│   ├── const/                   # Catálogos de cursos y errores HTTP
+│   ├── layouts/                 # Layout base SEO/head/body
+│   └── pages/                   # Rutas (index, 404 y errores dinámicos)
+├── astro.config.mjs
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Scripts disponibles
+Ejecuta estos comandos desde la raíz del proyecto:
 
-## 🧞 Commands
+- `npm install`: instala dependencias
+- `npm run dev`: levanta servidor de desarrollo
+- `npm run build`: genera build de producción
+- `npm run preview`: previsualiza el build local
+- `npm run astro`: ejecuta Astro CLI
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Notas
+- El catálogo de cursos y los mensajes de errores HTTP se gestionan desde `src/const/index.ts`.
+- La página principal se compone en `src/pages/index.astro`.

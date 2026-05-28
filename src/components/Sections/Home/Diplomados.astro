@@ -1,29 +1,15 @@
 ---
-import CursoCard from "../../cards/CursoCard.astro";
+import Slider from "../../Sliders/Slider.astro";
 import { diplomados } from "../../../const";
 ---
 
 <section
+  id="diplomados"
   class="py-16 px-8 sm:px-16 lg:px-28"
   style="background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
 >
   <h2 class="text-4xl lg:text-5xl font-black text-white text-center mb-12">
     Diplomados
   </h2>
-  <div
-    class="flex flex-row justify-center items-stretch gap-8 w-full max-w-4xl mx-auto"
-  >
-    {
-      diplomados.map((d) => (
-        <div class="flex-1 min-w-[220px] max-w-xs flex">
-          <CursoCard
-            bgColor={d.bgColor}
-            titulo={d.titulo}
-            texto={d.texto}
-            icono={d.icono}
-          />
-        </div>
-      ))
-    }
-  </div>
+  <Slider cursos={diplomados} id="diplomados-slider" />
 </section>

@@ -1,45 +1,65 @@
 ---
 import { Image } from "astro:assets";
-import academosLogo from "../../assets/logos/academos.png";
+import academosLogo from "../../assets/logos/academos-white.png";
 ---
 
 <header
   class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 sm:px-16 lg:px-28 overflow-visible"
   style="height: 80px; background: linear-gradient(90deg, #06094f 0%, #002496 100%);"
 >
-  <!-- Gran círculo blanco anclado a la esquina superior izquierda -->
-  <!-- Solo se ve el cuadrante inferior-derecho dentro del header -->
-  <div
-    class="absolute"
-    style="
-      width: 420px;
-      height: 210px;
-      background: white;
-      border-radius: 50%;
-      top: -40px;
-      left: -80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-left: 40px;
-      padding-top: 30px;
-    "
-  >
+  <a href="/" aria-label="Inicio" class="flex items-center">
     <Image
       src={academosLogo}
       alt="Academos"
       format="webp"
       loading="eager"
       fetchpriority="high"
-      style="width: 100px; height: 100px; object-fit: contain;"
+      style="width: 10vh; height: auto; object-fit: contain; padding-top: 30%;"
     />
-  </div>
+  </a>
 
-  <!-- Espacio para el logo -->
-  <div style="width: 160px;"></div>
+  <button
+    id="menu-toggle"
+    type="button"
+    aria-label="Abrir menu de navegacion"
+    aria-controls="mobile-menu"
+    aria-expanded="false"
+    class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg text-white hover:text-yellow-400 hover:bg-white/10 transition-colors"
+  >
+    <svg
+      id="menu-icon-open"
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <svg
+      id="menu-icon-close"
+      xmlns="http://www.w3.org/2000/svg"
+      class="hidden h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
 
   <!-- Navegación -->
-  <nav class="flex items-center gap-8">
+  <nav class="hidden md:flex items-center gap-8">
     <!-- Cursos con submenu -->
     <div class="relative group">
       <button
@@ -127,4 +147,128 @@ import academosLogo from "../../assets/logos/academos.png";
       <span class="sr-only">Inicio</span>
     </a>
   </nav>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden absolute top-full left-0 w-full opacity-0 invisible -translate-y-3 pointer-events-none transition-all duration-200"
+    style="background-color: rgba(6, 9, 79, 0.96); backdrop-filter: blur(6px);"
+  >
+    <nav class="flex flex-col gap-1 px-6 py-5">
+      <p
+        class="text-xs font-bold tracking-widest uppercase text-yellow-300 px-2 pb-1"
+      >
+        Cursos
+      </p>
+      <a
+        href="#cursos-adultos"
+        aria-label="Ir a cursos para adultos"
+        class="rounded-lg px-3 py-2 text-sm font-semibold text-white hover:text-yellow-400 hover:bg-white/10 transition-colors"
+      >
+        Cursos para adultos
+      </a>
+      <a
+        href="#cursos-jovenes"
+        aria-label="Ir a cursos para jovenes"
+        class="rounded-lg px-3 py-2 text-sm font-semibold text-white hover:text-yellow-400 hover:bg-white/10 transition-colors"
+      >
+        Cursos para jovenes
+      </a>
+      <a
+        href="#diplomados"
+        aria-label="Ir a diplomados"
+        class="rounded-lg px-3 py-2 text-sm font-semibold text-white hover:text-yellow-400 hover:bg-white/10 transition-colors"
+      >
+        Diplomados
+      </a>
+      <a
+        href="#nosotros"
+        aria-label="Ir a sobre nosotros"
+        class="rounded-lg px-3 py-2 text-sm font-semibold text-white hover:text-yellow-400 hover:bg-white/10 transition-colors"
+      >
+        Sobre Nosotros
+      </a>
+      <a
+        href="#contacto"
+        aria-label="Ir a contacto"
+        class="rounded-lg px-3 py-2 text-sm font-semibold text-white hover:text-yellow-400 hover:bg-white/10 transition-colors"
+      >
+        Contacto
+      </a>
+      <a
+        href="/"
+        aria-label="Ir a inicio"
+        class="mt-2 rounded-lg px-3 py-2 text-sm font-semibold text-yellow-300 hover:text-yellow-400 hover:bg-white/10 transition-colors"
+      >
+        Inicio
+      </a>
+    </nav>
+  </div>
 </header>
+
+<script is:inline>
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIconOpen = document.getElementById("menu-icon-open");
+  const menuIconClose = document.getElementById("menu-icon-close");
+
+  if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
+    const mobileLinks = mobileMenu.querySelectorAll("a");
+
+    const closeMenu = () => {
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Abrir menu de navegacion");
+      mobileMenu.classList.add(
+        "opacity-0",
+        "invisible",
+        "-translate-y-3",
+        "pointer-events-none",
+      );
+      mobileMenu.classList.remove(
+        "opacity-100",
+        "visible",
+        "translate-y-0",
+        "pointer-events-auto",
+      );
+      menuIconOpen.classList.remove("hidden");
+      menuIconClose.classList.add("hidden");
+    };
+
+    const openMenu = () => {
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Cerrar menu de navegacion");
+      mobileMenu.classList.remove(
+        "opacity-0",
+        "invisible",
+        "-translate-y-3",
+        "pointer-events-none",
+      );
+      mobileMenu.classList.add(
+        "opacity-100",
+        "visible",
+        "translate-y-0",
+        "pointer-events-auto",
+      );
+      menuIconOpen.classList.add("hidden");
+      menuIconClose.classList.remove("hidden");
+    };
+
+    menuToggle.addEventListener("click", () => {
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768) {
+        closeMenu();
+      }
+    });
+  }
+</script>
